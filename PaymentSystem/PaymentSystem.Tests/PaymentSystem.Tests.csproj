@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.1.13" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.1.13" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="3.1.13" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.13" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.13" />
+    <PackageReference Include="Moq" Version="4.16.1" />
+    <PackageReference Include="NUnit" Version="3.12.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.16.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PaymentSystem.Application\PaymentSystem.Application.csproj" />
+    <ProjectReference Include="..\PaymentSystem.Domain\PaymentSystem.Domain.csproj" />
+    <ProjectReference Include="..\PaymentSystem.Infrastructure\PaymentSystem.Infrastructure.csproj" />
+    <ProjectReference Include="..\PaymentSystem.SqlRepository\PaymentSystem.SqlRepository.csproj" />
+  </ItemGroup>
+
+</Project>
