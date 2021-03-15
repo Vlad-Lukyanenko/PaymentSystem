@@ -6,11 +6,11 @@ using Serilog;
 
 namespace PaymentSystem.Api
 {
-    public class Program
+    public static class Program
     {
         public static void Main(string[] args)
         {
-            IConfigurationRoot configuration = new ConfigurationBuilder()
+            var configuration = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .Build();
 
