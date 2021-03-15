@@ -5,7 +5,7 @@ using System;
 
 namespace PaymentSystem.SqlRepository.Configuration
 {
-    public class ClientConfiguration : IEntityTypeConfiguration<Client>
+    internal class ClientConfiguration : IEntityTypeConfiguration<Client>
     {
         public void Configure(EntityTypeBuilder<Client> builder)
         {

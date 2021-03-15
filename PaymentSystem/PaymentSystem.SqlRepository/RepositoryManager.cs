@@ -8,9 +8,6 @@ namespace PaymentSystem.SqlRepository
     public class RepositoryManager : IRepositoryManager
     {
         private readonly PaymentSystemContext _dbContext;
-        private readonly IBankAccountRepository _bankAccountRepository;
-        private readonly IClientRepository _clientRepository;
-        private readonly ITransactionRepository _transactionRepository;
 
         public RepositoryManager(
             PaymentSystemContext dbContext,
@@ -19,16 +16,16 @@ namespace PaymentSystem.SqlRepository
             ITransactionRepository transactionRepository)
         {
             _dbContext = dbContext;
-            _bankAccountRepository = bankAccountRepository;
-            _clientRepository = clientRepository;
-            _transactionRepository = transactionRepository;
+            BankAccount = bankAccountRepository;
+            Client = clientRepository;
+            Transaction = transactionRepository;
         }
 
-        public IBankAccountRepository BankAccount => _bankAccountRepository;
+        public IBankAccountRepository BankAccount { get; }
 
-        public IClientRepository Client => _clientRepository;
+        public IClientRepository Client { get; }
 
-        public ITransactionRepository Transaction => _transactionRepository;
+        public ITransactionRepository Transaction { get; }
 
         public Task SaveChangesAsync() => _dbContext.SaveChangesAsync();
     }

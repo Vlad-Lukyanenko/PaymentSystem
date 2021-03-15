@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 namespace PaymentSystem.SqlRepository
 {
     public class TransactionRepository : ITransactionRepository
-    {
-        public readonly PaymentSystemContext _dbContext;
-        public readonly IMapper _mapper;
+    { 
+        private readonly PaymentSystemContext _dbContext;
+        private readonly IMapper _mapper;
 
         public TransactionRepository(PaymentSystemContext dbContext, IMapper mapper)
         {

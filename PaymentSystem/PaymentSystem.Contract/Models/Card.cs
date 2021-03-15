@@ -16,6 +16,6 @@ namespace PaymentSystem.Contract.Models
 
         public ushort Cvc { get; set; }
 
-        public BankAccount BankAcount { get; set; }
+        public BankAccount BankAccount { get; set; }
     }
 }

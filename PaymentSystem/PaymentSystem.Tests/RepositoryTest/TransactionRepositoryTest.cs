@@ -1,5 +1,4 @@
-﻿
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,7 +19,7 @@ namespace PaymentSystem.Tests.RepositoryTest
 
             var clients = (await RepositoryManager.Client.GetClientsAsync(1, 2)).ToList();
 
-            var amountOfMoney = 100;
+            const int amountOfMoney = 100;
 
             await RepositoryManager.Transaction.CreateAsync(new Domain.Transaction
             {

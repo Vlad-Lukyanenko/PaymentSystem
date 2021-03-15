@@ -13,7 +13,7 @@ namespace PaymentSystem.Api.Controllers
     public class ClientController : Controller
     {
         private readonly IClientService _clientService;
-        public readonly IMapper _mapper;
+        private readonly IMapper _mapper;
         public ClientController(IClientService clientService, IMapper mapper)
         {
             _clientService = clientService;
@@ -21,11 +21,14 @@ namespace PaymentSystem.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Client>> Get([FromQuery] GetClientsRequest request)
+        public async Task<GetClientsResponse> Get([FromQuery] GetClientsRequest request)
         {
             var clients = await _clientService.GetClients(request.PageNumber, request.PerPage);
-            
-            return _mapper.Map<IEnumerable<Client>>(clients);
+
+            return new GetClientsResponse
+            {
+                Clients = _mapper.Map<IEnumerable<Client>>(clients)
+            };
         }
     }
 }

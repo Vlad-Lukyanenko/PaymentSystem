@@ -5,7 +5,7 @@ using System;
 
 namespace PaymentSystem.SqlRepository.Configuration
 {
-    public class BankAccountConfiguration : IEntityTypeConfiguration<BankAccount>
+    internal class BankAccountConfiguration : IEntityTypeConfiguration<BankAccount>
     {
         public void Configure(EntityTypeBuilder<BankAccount> builder)
         {

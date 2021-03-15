@@ -27,7 +27,5 @@ namespace PaymentSystem.SqlRepository.Models
         [Required(ErrorMessage = "Cvc is a required field.")]
         [MaxLength(3, ErrorMessage = "Maximum length for the Cvc is 3 characters.")]
         public ushort Cvc { get; set; }
-
-        //public BankAccount BankAcount { get; set; }
     }
 }

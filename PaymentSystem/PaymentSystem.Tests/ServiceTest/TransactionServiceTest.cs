@@ -25,7 +25,7 @@ namespace PaymentSystem.Tests.ServiceTest
 
             var clients = (await RepositoryManager.Client.GetClientsAsync(1, 2)).ToList();
 
-            var amountOfMoney = 100;
+            const int amountOfMoney = 100;
 
             await transactionService.TransferMoneyAsync(
                 clients[0].BankAccounts.ToList()[0].PaymentCards.ToList()[0].CardNumber,
@@ -56,7 +56,7 @@ namespace PaymentSystem.Tests.ServiceTest
 
             var clients = (await RepositoryManager.Client.GetClientsAsync(1, 2)).ToList();
 
-            var amountOfMoney = 100;
+            const int amountOfMoney = 100;
 
             var incorrectCardNumber = false;
 
@@ -88,7 +88,7 @@ namespace PaymentSystem.Tests.ServiceTest
 
             var clients = (await RepositoryManager.Client.GetClientsAsync(1, 2)).ToList();
 
-            var amountOfMoney = 100;
+            const int amountOfMoney = 100;
 
             var bankAccountNotFound = false;
 
@@ -120,7 +120,7 @@ namespace PaymentSystem.Tests.ServiceTest
 
             var clients = (await RepositoryManager.Client.GetClientsAsync(1, 2)).ToList();
 
-            var amountOfMoney = 100000000;
+            const int amountOfMoney = 100000000;
 
             var insufficientFunds = false;
 
@@ -152,7 +152,7 @@ namespace PaymentSystem.Tests.ServiceTest
 
             var clients = (await RepositoryManager.Client.GetClientsAsync(1, 2)).ToList();
 
-            var amountOfMoney = 0;
+            const int amountOfMoney = 0;
 
             var insufficientFunds = false;
 

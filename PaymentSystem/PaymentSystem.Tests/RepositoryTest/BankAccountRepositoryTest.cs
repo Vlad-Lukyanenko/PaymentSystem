@@ -30,7 +30,7 @@ namespace PaymentSystem.Tests.RepositoryTest
             await RepositoryManager.SaveChangesAsync();
 
             var oldAmountOfMoneyValue = client.BankAccounts.ToList()[0].AmountOfMoney;
-            var moneyToAdd = 1000;
+            const int moneyToAdd = 1000;
 
             await RepositoryManager.BankAccount.PutMoneyIntoAccountAsync(client.BankAccounts.ToList()[0].PaymentCards.ToList()[0].CardNumber, moneyToAdd);
             await RepositoryManager.SaveChangesAsync();
@@ -51,7 +51,7 @@ namespace PaymentSystem.Tests.RepositoryTest
             await RepositoryManager.SaveChangesAsync();
 
             var oldAmountOfMoneyValue = client.BankAccounts.ToList()[0].AmountOfMoney;
-            var moneyToGet = 1000;
+            const int moneyToGet = 1000;
 
             await RepositoryManager.BankAccount.GetMoneyFromAccountAsync(client.BankAccounts.ToList()[0].PaymentCards.ToList()[0].CardNumber, moneyToGet);
             await RepositoryManager.SaveChangesAsync();

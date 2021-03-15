@@ -25,10 +25,10 @@ namespace PaymentSystem.Application
             _paymentCardSettings = paymentCardSettings.Value;
         }
 
-        public async Task TransferMoneyAsync(string senderCardNumber, string recipientCardId, double amountOfMoney)
+        public async Task TransferMoneyAsync(string senderCardNumber, string recipientCardNumber, double amountOfMoney)
         {
             senderCardNumber = CreditCardValidator(senderCardNumber);
-            recipientCardId = CreditCardValidator(recipientCardId);
+            recipientCardNumber = CreditCardValidator(recipientCardNumber);
 
             IsAmountOfMoneyMoreThenZero(amountOfMoney);
 
@@ -37,15 +37,15 @@ namespace PaymentSystem.Application
             IfAccountExists(sender, senderCardNumber);
             IsEnoughCash(sender);
 
-            var recipient = await _repositoryManager.BankAccount.PutMoneyIntoAccountAsync(recipientCardId, amountOfMoney);
+            var recipient = await _repositoryManager.BankAccount.PutMoneyIntoAccountAsync(recipientCardNumber, amountOfMoney);
 
-            IfAccountExists(recipient, recipientCardId);
+            IfAccountExists(recipient, recipientCardNumber);
             IsDuplicateAccount(sender.Id, recipient.Id);
 
             var senderCardId = sender.PaymentCards.SingleOrDefault(c => c.CardNumber.Equals(senderCardNumber));
-            var recepientCardId = recipient.PaymentCards.SingleOrDefault(c => c.CardNumber.Equals(recipientCardId));
+            var recipientCardId = recipient.PaymentCards.SingleOrDefault(c => c.CardNumber.Equals(recipientCardNumber));
 
-            await LogTransactionAsync(senderCardId.Id, recepientCardId.Id, amountOfMoney);
+            await LogTransactionAsync(senderCardId.Id, recipientCardId.Id, amountOfMoney);
 
             await _repositoryManager.SaveChangesAsync();
         }
@@ -63,7 +63,7 @@ namespace PaymentSystem.Application
             await _repositoryManager.Transaction.CreateAsync(transaction);
         }
 
-        private void IsAmountOfMoneyMoreThenZero(double amountOfMoney)
+        private static void IsAmountOfMoneyMoreThenZero(double amountOfMoney)
         {
             if (amountOfMoney <= 0)
             {
@@ -71,7 +71,7 @@ namespace PaymentSystem.Application
             }
         }
 
-        private void IsDuplicateAccount(Guid senderId, Guid recipientId)
+        private static void IsDuplicateAccount(Guid senderId, Guid recipientId)
         {
             if (senderId == recipientId)
             {
@@ -79,7 +79,7 @@ namespace PaymentSystem.Application
             }
         }
 
-        private void IfAccountExists(BankAccount account, string senderCardNumber)
+        private static void IfAccountExists(BankAccount account, string senderCardNumber)
         {
             if (account == null)
             {
@@ -87,7 +87,7 @@ namespace PaymentSystem.Application
             }
         }
 
-        private void IsEnoughCash(BankAccount account)
+        private static void IsEnoughCash(BankAccount account)
         {
             if (account.AmountOfMoney < LowerAccountLimit)
             {
@@ -95,9 +95,14 @@ namespace PaymentSystem.Application
             }
         }
 
+        private static string BankAccountNotFoundMessage(string cardNumber)
+        {
+            return $"Bank account was not found for the following card number = {cardNumber}";
+        }
+
         private string CreditCardValidator(string cardNumber)
         {
-            cardNumber = cardNumber.Replace(" ", "");
+            cardNumber = cardNumber.Replace(" ", string.Empty);
 
             var cardCheck = new Regex(_paymentCardSettings.CardNumberFilter);
 
@@ -107,11 +112,6 @@ namespace PaymentSystem.Application
             }
 
             return cardNumber;
-        }
-
-        private string BankAccountNotFoundMessage(string cardNumber)
-        {
-            return $"Bank account was not found for the following card number = {cardNumber}";
         }
     }
 }

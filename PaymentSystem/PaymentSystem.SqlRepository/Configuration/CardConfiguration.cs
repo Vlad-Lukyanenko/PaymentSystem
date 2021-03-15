@@ -5,7 +5,7 @@ using System;
 
 namespace PaymentSystem.SqlRepository.Configuration
 {
-    class CardConfiguration : IEntityTypeConfiguration<Card>
+    internal class CardConfiguration : IEntityTypeConfiguration<Card>
     {
         public void Configure(EntityTypeBuilder<Card> builder)
         {

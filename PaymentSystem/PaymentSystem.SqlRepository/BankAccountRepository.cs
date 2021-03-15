@@ -9,8 +9,8 @@ namespace PaymentSystem.SqlRepository
 {
     public class BankAccountRepository : IBankAccountRepository
     {
-        public readonly PaymentSystemContext _dbContext;
-        public readonly IMapper _mapper;
+        private readonly PaymentSystemContext _dbContext;
+        private readonly IMapper _mapper;
 
         public BankAccountRepository(PaymentSystemContext dbContext, IMapper mapper)
         {
