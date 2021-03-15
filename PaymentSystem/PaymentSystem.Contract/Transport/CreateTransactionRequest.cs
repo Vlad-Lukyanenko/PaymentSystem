@@ -13,6 +13,7 @@ namespace PaymentSystem.Contract.Transport
         public string RecipientCardId { get; set; }
 
         [Required]
-        public decimal AmountOfMoney { get; set; }
+        [Range(1, double.MaxValue, ErrorMessage = "Please enter a AmountOfMoney value bigger than {0}")]
+        public double AmountOfMoney { get; set; }
     }
 }

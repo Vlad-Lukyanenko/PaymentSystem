@@ -13,8 +13,7 @@ namespace PaymentSystem.SqlRepository.Models
         [ForeignKey(nameof(Card))]
         public Guid RecipientCardId { get; set; }
 
-        [Column(TypeName = "decimal(18, 2)")]
-        public decimal AmountOfMoney { get; set; }
+        public double AmountOfMoney { get; set; }
 
         public DateTime DateCreated { get; set; }
     }

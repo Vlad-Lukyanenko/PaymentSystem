@@ -25,10 +25,12 @@ namespace PaymentSystem.Application
             _paymentCardSettings = paymentCardSettings.Value;
         }
 
-        public async Task TransferMoneyAsync(string senderCardNumber, string recipientCardId, decimal amountOfMoney)
+        public async Task TransferMoneyAsync(string senderCardNumber, string recipientCardId, double amountOfMoney)
         {
             senderCardNumber = CreditCardValidator(senderCardNumber);
             recipientCardId = CreditCardValidator(recipientCardId);
+
+            IsAmountOfMoneyMoreThenZero(amountOfMoney);
 
             var sender = await _repositoryManager.BankAccount.GetMoneyFromAccountAsync(senderCardNumber, amountOfMoney);
 
@@ -48,7 +50,7 @@ namespace PaymentSystem.Application
             await _repositoryManager.SaveChangesAsync();
         }
 
-        private async Task LogTransactionAsync(Guid senderCardId, Guid recipientCardId, decimal amountOfMoney)
+        private async Task LogTransactionAsync(Guid senderCardId, Guid recipientCardId, double amountOfMoney)
         {
             var transaction = new Transaction
             {
@@ -59,6 +61,14 @@ namespace PaymentSystem.Application
             };
 
             await _repositoryManager.Transaction.CreateAsync(transaction);
+        }
+
+        private void IsAmountOfMoneyMoreThenZero(double amountOfMoney)
+        {
+            if (amountOfMoney <= 0)
+            {
+                throw new ZeroFundsException("Amount of money to transfer should be greater than 0");
+            }
         }
 
         private void IsDuplicateAccount(Guid senderId, Guid recipientId)

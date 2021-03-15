@@ -28,7 +28,7 @@ namespace PaymentSystem.SqlRepository
             return _mapper.Map<BankAccount>(account);
         }
 
-        public async Task<BankAccount> PutMoneyIntoAccountAsync(string cardNumber, decimal amountOfMoney)
+        public async Task<BankAccount> PutMoneyIntoAccountAsync(string cardNumber, double amountOfMoney)
         {
             var account = await _dbContext.BankAccounts.Include(c => c.PaymentCards).SingleOrDefaultAsync(c => c.PaymentCards.Any(p => p.CardNumber.Equals(cardNumber)));
 
@@ -42,7 +42,7 @@ namespace PaymentSystem.SqlRepository
             return _mapper.Map<BankAccount>(account);
         }
 
-        public async Task<BankAccount> GetMoneyFromAccountAsync(string cardNumber, decimal amountOfMoney)
+        public async Task<BankAccount> GetMoneyFromAccountAsync(string cardNumber, double amountOfMoney)
         {
             var account = await _dbContext.BankAccounts.Include(c => c.PaymentCards).SingleOrDefaultAsync(c => c.PaymentCards.Any(p => p.CardNumber.Equals(cardNumber)));
 

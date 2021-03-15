@@ -138,5 +138,37 @@ namespace PaymentSystem.Tests.ServiceTest
 
             Assert.AreEqual(true, insufficientFunds);
         }
+
+        [Test]
+        public async Task TransferMoneyWithZeroValue_Test()
+        {
+            var transactionService = TestServiceProvider.GetService<ITransactionService>();
+
+            var domainClients = DataProvider.GetClients();
+
+            await RepositoryManager.Client.CreateAsync(domainClients[0]);
+            await RepositoryManager.Client.CreateAsync(domainClients[1]);
+            await RepositoryManager.SaveChangesAsync();
+
+            var clients = (await RepositoryManager.Client.GetClientsAsync(1, 2)).ToList();
+
+            var amountOfMoney = 0;
+
+            var insufficientFunds = false;
+
+            try
+            {
+                await transactionService.TransferMoneyAsync(
+                clients[0].BankAccounts.ToList()[0].PaymentCards.ToList()[0].CardNumber,
+                clients[1].BankAccounts.ToList()[0].PaymentCards.ToList()[0].CardNumber,
+                amountOfMoney);
+            }
+            catch (ZeroFundsException)
+            {
+                insufficientFunds = true;
+            }
+
+            Assert.AreEqual(true, insufficientFunds);
+        }
     }
 }

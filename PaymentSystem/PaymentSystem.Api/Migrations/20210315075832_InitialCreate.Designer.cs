@@ -10,7 +10,7 @@ using PaymentSystem.SqlRepository;
 namespace PaymentSystem.Api.Migrations
 {
     [DbContext(typeof(PaymentSystemContext))]
-    [Migration("20210314165030_InitialCreate")]
+    [Migration("20210315075832_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,8 +27,8 @@ namespace PaymentSystem.Api.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<decimal>("AmountOfMoney")
-                        .HasColumnType("decimal(18, 2)");
+                    b.Property<double>("AmountOfMoney")
+                        .HasColumnType("float");
 
                     b.Property<Guid>("ClientId")
                         .HasColumnType("uniqueidentifier");
@@ -46,49 +46,49 @@ namespace PaymentSystem.Api.Migrations
                         new
                         {
                             Id = new Guid("87ab530a-aa4a-4fcb-a09d-436c03be080c"),
-                            AmountOfMoney = 10000m,
+                            AmountOfMoney = 10000.0,
                             ClientId = new Guid("ef74f0f4-fcca-4751-a39e-4faae75f9123"),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = new Guid("a41713c6-393e-4202-b490-62028bac8aed"),
-                            AmountOfMoney = 20000m,
+                            AmountOfMoney = 20000.0,
                             ClientId = new Guid("16db1414-387c-40d1-89e3-05945c4661a1"),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = new Guid("56617f02-32fd-4c1a-83ce-341e7af16a25"),
-                            AmountOfMoney = 20000m,
+                            AmountOfMoney = 20000.0,
                             ClientId = new Guid("c5a3b5dc-caa1-4b00-987b-b3acf0527397"),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = new Guid("5b5385b9-5157-4d4c-a883-1ea0c2bff1ed"),
-                            AmountOfMoney = 30000m,
+                            AmountOfMoney = 30000.0,
                             ClientId = new Guid("28e1de8a-715a-4d50-8a08-2d86caca0bb4"),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = new Guid("54bf5559-3ded-4338-98f5-02d18509e7fd"),
-                            AmountOfMoney = 40000m,
+                            AmountOfMoney = 40000.0,
                             ClientId = new Guid("d7fafcdd-faf2-472d-9d52-4c9256c77149"),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = new Guid("52ef23aa-621f-4184-b88b-263f5f2e4b0f"),
-                            AmountOfMoney = 50000m,
+                            AmountOfMoney = 50000.0,
                             ClientId = new Guid("d7fafcdd-faf2-472d-9d52-4c9256c77149"),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = new Guid("2f524819-7b82-404f-b55b-af16d5fcf98e"),
-                            AmountOfMoney = 60000m,
+                            AmountOfMoney = 60000.0,
                             ClientId = new Guid("1d8f8003-fd0e-42b5-9f7e-05b766de6340"),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
@@ -333,8 +333,8 @@ namespace PaymentSystem.Api.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<decimal>("AmountOfMoney")
-                        .HasColumnType("decimal(18, 2)");
+                    b.Property<double>("AmountOfMoney")
+                        .HasColumnType("float");
 
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");

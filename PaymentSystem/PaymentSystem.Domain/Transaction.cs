@@ -10,7 +10,7 @@ namespace PaymentSystem.Domain
 
         public Guid RecipientCardId { get; set; }
 
-        public decimal AmountOfMoney { get; set; }
+        public double AmountOfMoney { get; set; }
 
         public DateTime DateCreated { get; set; }
     }

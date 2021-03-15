@@ -10,6 +10,7 @@ using PaymentSystem.Api.Extensions;
 using PaymentSystem.Api.Middleware;
 using PaymentSystem.Application;
 using PaymentSystem.SqlRepository;
+using Serilog;
 
 namespace PaymentSystem.Api
 {
@@ -43,8 +44,10 @@ namespace PaymentSystem.Api
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
+            loggerFactory.AddSerilog();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

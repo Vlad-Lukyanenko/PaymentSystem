@@ -7,8 +7,8 @@ namespace PaymentSystem.Infrastructure
     {
         Task<BankAccount> GetBankAccountByCardNumberAsync(string cardNumber);
 
-        Task<BankAccount> PutMoneyIntoAccountAsync(string cardNumber, decimal amountOfMoney);
+        Task<BankAccount> PutMoneyIntoAccountAsync(string cardNumber, double amountOfMoney);
 
-        Task<BankAccount> GetMoneyFromAccountAsync(string cardNumber, decimal amountOfMoney);
+        Task<BankAccount> GetMoneyFromAccountAsync(string cardNumber, double amountOfMoney);
     }
 }

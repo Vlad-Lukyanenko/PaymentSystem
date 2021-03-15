@@ -31,7 +31,7 @@ namespace PaymentSystem.Api.Migrations
                     Id = table.Column<Guid>(nullable: false),
                     SenderCardId = table.Column<Guid>(nullable: false),
                     RecipientCardId = table.Column<Guid>(nullable: false),
-                    AmountOfMoney = table.Column<decimal>(type: "decimal(18, 2)", nullable: false),
+                    AmountOfMoney = table.Column<double>(nullable: false),
                     DateCreated = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
@@ -46,7 +46,7 @@ namespace PaymentSystem.Api.Migrations
                     Id = table.Column<Guid>(nullable: false),
                     ClientId = table.Column<Guid>(nullable: false),
                     DateCreated = table.Column<DateTime>(nullable: false),
-                    AmountOfMoney = table.Column<decimal>(type: "decimal(18, 2)", nullable: false)
+                    AmountOfMoney = table.Column<double>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -100,13 +100,13 @@ namespace PaymentSystem.Api.Migrations
                 columns: new[] { "Id", "AmountOfMoney", "ClientId", "DateCreated" },
                 values: new object[,]
                 {
-                    { new Guid("87ab530a-aa4a-4fcb-a09d-436c03be080c"), 10000m, new Guid("ef74f0f4-fcca-4751-a39e-4faae75f9123"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("a41713c6-393e-4202-b490-62028bac8aed"), 20000m, new Guid("16db1414-387c-40d1-89e3-05945c4661a1"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("56617f02-32fd-4c1a-83ce-341e7af16a25"), 20000m, new Guid("c5a3b5dc-caa1-4b00-987b-b3acf0527397"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("5b5385b9-5157-4d4c-a883-1ea0c2bff1ed"), 30000m, new Guid("28e1de8a-715a-4d50-8a08-2d86caca0bb4"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("54bf5559-3ded-4338-98f5-02d18509e7fd"), 40000m, new Guid("d7fafcdd-faf2-472d-9d52-4c9256c77149"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("52ef23aa-621f-4184-b88b-263f5f2e4b0f"), 50000m, new Guid("d7fafcdd-faf2-472d-9d52-4c9256c77149"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("2f524819-7b82-404f-b55b-af16d5fcf98e"), 60000m, new Guid("1d8f8003-fd0e-42b5-9f7e-05b766de6340"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                    { new Guid("87ab530a-aa4a-4fcb-a09d-436c03be080c"), 10000.0, new Guid("ef74f0f4-fcca-4751-a39e-4faae75f9123"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("a41713c6-393e-4202-b490-62028bac8aed"), 20000.0, new Guid("16db1414-387c-40d1-89e3-05945c4661a1"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("56617f02-32fd-4c1a-83ce-341e7af16a25"), 20000.0, new Guid("c5a3b5dc-caa1-4b00-987b-b3acf0527397"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("5b5385b9-5157-4d4c-a883-1ea0c2bff1ed"), 30000.0, new Guid("28e1de8a-715a-4d50-8a08-2d86caca0bb4"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("54bf5559-3ded-4338-98f5-02d18509e7fd"), 40000.0, new Guid("d7fafcdd-faf2-472d-9d52-4c9256c77149"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("52ef23aa-621f-4184-b88b-263f5f2e4b0f"), 50000.0, new Guid("d7fafcdd-faf2-472d-9d52-4c9256c77149"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("2f524819-7b82-404f-b55b-af16d5fcf98e"), 60000.0, new Guid("1d8f8003-fd0e-42b5-9f7e-05b766de6340"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.InsertData(

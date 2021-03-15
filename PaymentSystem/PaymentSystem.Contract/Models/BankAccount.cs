@@ -9,7 +9,7 @@ namespace PaymentSystem.Contract.Models
 
         public DateTime DateCreated { get; set; }
 
-        public decimal AmountOfMoney { get; set; }
+        public double AmountOfMoney { get; set; }
 
         public IEnumerable<Card> PaymentCards { get; set; }
     }

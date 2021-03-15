@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using PaymentSystem.Application.CustomExceptions;
 using PaymentSystem.Contract.Transport;
 using PaymentSystem.Infrastructure.Transaction;
+using System;
 using System.Threading.Tasks;
 
 namespace PaymentSystem.Api.Controllers
@@ -10,11 +12,13 @@ namespace PaymentSystem.Api.Controllers
     [Route("[controller]")]
     public class TransactionController : Controller
     {
+        private readonly ILogger<TransactionController> _logger;
         private readonly ITransactionService _transactionService;
 
-        public TransactionController(ITransactionService transactionService)
+        public TransactionController(ITransactionService transactionService, ILogger<TransactionController> logger)
         {
             _transactionService = transactionService;
+            _logger = logger;
         }
 
         [HttpPost]
@@ -29,22 +33,17 @@ namespace PaymentSystem.Api.Controllers
             }
             catch (BankAccountNotFoundException ex)
             {
+                _logger.LogError(ex.Message);
                 return NotFound(ex.Message);
             }
-            catch (CardExpiredException ex)
-            { 
-                return BadRequest(ex.Message);
-            }
-            catch (InvalidCardNumberException ex)
+            catch (Exception ex) when (
+                ex is CardExpiredException ||
+                ex is InvalidCardNumberException ||
+                ex is InsufficientFundsException ||
+                ex is DuplicateAccountException ||
+                ex is ZeroFundsException)
             {
-                return BadRequest(ex.Message);
-            }
-            catch (InsufficientFundsException ex)
-            {
-                return BadRequest(ex.Message);
-            }
-            catch (DuplicateAccountException ex)
-            {
+                _logger.LogError(ex.Message);
                 return BadRequest(ex.Message);
             }
 

@@ -19,8 +19,6 @@ namespace PaymentSystem.Api.Middleware
                     var contextFeature = context.Features.Get<IExceptionHandlerFeature>();
                     if (contextFeature != null)
                     {
-                        //TODO: LogError($"Something went wrong: {contextFeature.Error}");
-
                         await context.Response.WriteAsync(new ErrorDetails()
                         {
                             StatusCode = context.Response.StatusCode,

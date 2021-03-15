@@ -24,7 +24,7 @@ namespace PaymentSystem.Api.Controllers
         public async Task<IEnumerable<Client>> Get([FromQuery] GetClientsRequest request)
         {
             var clients = await _clientService.GetClients(request.PageNumber, request.PerPage);
-
+            
             return _mapper.Map<IEnumerable<Client>>(clients);
         }
     }
