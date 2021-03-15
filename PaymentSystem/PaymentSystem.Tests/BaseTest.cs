@@ -17,6 +17,9 @@ namespace PaymentSystem.Tests
     public abstract class BaseTest
     {
         protected readonly IRepositoryManager RepositoryManager;
+        protected DbContextOptions<PaymentSystemContext> Options { get; set; }
+        protected IServiceProvider TestServiceProvider { get; set; }
+        protected IMapper Mapper { get; set; }
 
         protected BaseTest()
         {
@@ -53,12 +56,6 @@ namespace PaymentSystem.Tests
 
             RepositoryManager = (IRepositoryManager)TestServiceProvider.GetService(typeof(IRepositoryManager));
         }
-
-        protected DbContextOptions<PaymentSystemContext> Options { get; set; }
-
-        protected IServiceProvider TestServiceProvider { get; set; }
-
-        protected IMapper Mapper { get; set; }
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
